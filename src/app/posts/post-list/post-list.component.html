@@ -14,10 +14,14 @@
       {{ post.content }}
     </mat-panel-description>
     <mat-action-row>
-        <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
-        <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
-      </mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 
+<!-- Mat Paginator Start -->
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangedPage($event)"></mat-paginator>
+<!-- Mat Paginator End -->
 <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No Post Added Yet!</p>

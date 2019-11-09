@@ -26,6 +26,7 @@ export class PostCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Creating form 
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(2)]
@@ -36,6 +37,9 @@ export class PostCreateComponent implements OnInit {
         asyncValidators: [mimeType]
       })
     });
+    // end
+
+    // populating form with values on reload if postId is present
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("postId")) {
         this.mode = "edit";
@@ -60,6 +64,7 @@ export class PostCreateComponent implements OnInit {
         this.postId = null;
       }
     });
+    // end
   }
 
   onImagePicked(event: Event) {
