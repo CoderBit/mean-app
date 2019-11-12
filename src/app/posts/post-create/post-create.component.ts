@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { trigger, state, transition, style, animate } from '@angular/animations';
 
-import { Post } from "../post.model";
-import { PostService } from "../post.service";
-import { mimeType } from "./mime-type.validator";
+import { Post } from '../post.model';
+import { PostService } from '../post.service';
+import { mimeType } from './mime-type.validator';
 
 @Component({
-  selector: "app-post-create",
-  templateUrl: "./post-create.component.html",
-  styleUrls: ["./post-create.component.scss"],
+  selector: 'app-post-create',
+  templateUrl: './post-create.component.html',
+  styleUrls: ['./post-create.component.scss'],
   animations: [
     trigger('fadeIn', [
       state('in', style({
@@ -26,13 +26,13 @@ import { mimeType } from "./mime-type.validator";
   ]
 })
 export class PostCreateComponent implements OnInit {
-  enteredTitle = "";
-  enteredContent = "";
+  enteredTitle = '';
+  enteredContent = '';
   post: Post;
   isLoading = false;
   form: FormGroup;
   imagePreview: string;
-  private mode = "create";
+  private mode = 'create';
   private postId: string;
 
   constructor(
@@ -41,7 +41,7 @@ export class PostCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Creating form 
+    // Creating form
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(2)]
@@ -56,9 +56,9 @@ export class PostCreateComponent implements OnInit {
 
     // populating form with values on reload if postId is present
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("postId")) {
-        this.mode = "edit";
-        this.postId = paramMap.get("postId");
+      if (paramMap.has('postId')) {
+        this.mode = 'edit';
+        this.postId = paramMap.get('postId');
         this.isLoading = true;
         this.postService.getPost(this.postId).subscribe(post => {
           this.isLoading = false;
@@ -76,7 +76,7 @@ export class PostCreateComponent implements OnInit {
           });
         });
       } else {
-        this.mode = "create";
+        this.mode = 'create';
         this.postId = null;
       }
     });
@@ -86,10 +86,10 @@ export class PostCreateComponent implements OnInit {
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({ image: file });
-    this.form.get("image").updateValueAndValidity();
+    this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
-      this.imagePreview = <string>reader.result;
+      this.imagePreview = reader.result as string;
     };
     reader.readAsDataURL(file);
   }
@@ -99,7 +99,7 @@ export class PostCreateComponent implements OnInit {
       return;
     }
     this.isLoading = true;
-    if (this.mode === "create") {
+    if (this.mode === 'create') {
       this.postService.addPost(
         this.form.value.title,
         this.form.value.content,

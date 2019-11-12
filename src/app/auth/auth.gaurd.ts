@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router
-} from "@angular/router";
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
@@ -20,7 +20,7 @@ export class AuthGaurd implements CanActivate {
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
     const isAuth = this.authService.getIsAuthenticated();
-    if(!isAuth){
+    if (!isAuth) {
       this.router.navigate(['/login']);
     }
     return isAuth;

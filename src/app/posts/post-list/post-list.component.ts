@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Post } from "../post.model";
-import { PostService } from "../post.service";
-import { Subscription } from "rxjs";
-import { PageEvent } from "@angular/material";
-import { AuthService } from "src/app/auth/auth.service";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Post } from '../post.model';
+import { PostService } from '../post.service';
+import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: "app-post-list",
-  templateUrl: "./post-list.component.html",
-  styleUrls: ["./post-list.component.scss"]
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
