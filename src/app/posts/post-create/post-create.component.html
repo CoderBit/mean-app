@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [@fadeIn]>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSavePost()" [formGroup]="form" *ngIf="!isLoading">
     <mat-form-field>

@@ -1,14 +1,29 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { PostService } from "../post.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { trigger, state, transition, style, animate } from '@angular/animations';
+
 import { Post } from "../post.model";
+import { PostService } from "../post.service";
 import { mimeType } from "./mime-type.validator";
 
 @Component({
   selector: "app-post-create",
   templateUrl: "./post-create.component.html",
-  styleUrls: ["./post-create.component.scss"]
+  styleUrls: ["./post-create.component.scss"],
+  animations: [
+    trigger('fadeIn', [
+      state('in', style({
+        opacity: 1,
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+        }),
+        animate(400)
+      ])
+    ])
+  ]
 })
 export class PostCreateComponent implements OnInit {
   enteredTitle = "";
