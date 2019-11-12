@@ -54,6 +54,7 @@ export class PostService {
       title: string;
       content: string;
       imagePath: string;
+      creator: string;
     }>(`http://localhost:3000/api/posts/${id}`);
   }
 
@@ -89,7 +90,7 @@ export class PostService {
       postData.append("content", content);
       postData.append("image", image, title);
     } else {
-      postData = { id: id, title: title, content: content, imagePath: image };
+      postData = { id: id, title: title, content: content, imagePath: image, creator: null };
     }
     this.http
       .put(`http://localhost:3000/api/posts/${id}`, postData)

@@ -53,6 +53,7 @@ router.post("/login", (req, res, next) => {
       );
       res.status(200).json({
         email: fetchedUser.email,
+        userId: fetchedUser._id,
         token: token,
         expiresIn: 3600 
       });
