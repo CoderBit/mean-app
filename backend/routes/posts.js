@@ -51,6 +51,11 @@ router.post(
           id: createdPost._id
         }
       });
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: "Creating a post failed!"
+      });
     });
   }
 );
@@ -82,6 +87,11 @@ router.put(
           message: "User Not Authorized!"
         });
       }
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: "Couldn't update post!"
+      });
     });
   }
 );
@@ -105,6 +115,11 @@ router.get("", (req, res, next) => {
         posts: fetchedPosts,
         maxPosts: count
       });
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: "Fetching posts failed!"
+      });
     });
 });
 
@@ -115,6 +130,11 @@ router.get("/:id", (req, res, next) => {
     } else {
       res.status(404).json({ message: "Post Not Found" });
     }
+  })
+  .catch(err => {
+    return res.status(500).json({
+      message: "Fetching posts failed!"
+    });
   });
 });
 
@@ -129,6 +149,11 @@ router.delete("/:id", checkAuth, (req, res, next) => {
         message: "User Not Authorized!"
       });
     }
+  })
+  .catch(err => {
+    return res.status(500).json({
+      message: "Deleting posts failed!"
+    });
   });
 });
 
