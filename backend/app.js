@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://admin:u9ykJ6UAsgz5DVgt@cluster0-jubrz.mongodb.net/nirvanadb?retryWrites=true&w=majority", 
+mongoose.connect("mongodb+srv://admin:" + process.env.MONGO_PW + "@cluster0-jubrz.mongodb.net/nirvanadb?retryWrites=true&w=majority", 
   { useNewUrlParser: true, useUnifiedTopology: true })
   .then( () => {
     console.log('Connected to database!');
